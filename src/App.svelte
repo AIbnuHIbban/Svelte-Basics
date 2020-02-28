@@ -1,51 +1,38 @@
 <script>
-	export let name;
-	let point = 100;
-
-	const addPoint = () => point += 1;
-	const minPoint = () => point -= 1;
-	let showControls = false
-
-	const toggle = () => showControls = !showControls
+	import {Router, Link, Route} from 'svelte-routing';
+	import BasicOne from "./BasicOne.svelte";
+	import Home from "./Home.svelte";
+	import ShoppingCart from "./shop/ShoppingCart.svelte";
 </script>
 
 <main>
-	<div class="container">
-		<div class="card">
-			<h1>{name}</h1>
-			<!-- Toggle -->
-			<button class="btn btn-sm" on:click={toggle}>Toggle</button>
-			{#if showControls}
-			<h2>{point}</h2>
-			<!-- Onlclik -->
-			<button class="btn" on:click="{addPoint}">+1</button>
-			<button class="btn btn-dark" on:click="{minPoint}">-1</button>
-			<br>
-			<!-- Bind -->
-			<input type="number" bind:value={point}>
-			{/if}
+	<Router>
+		<nav>
+			<Link to="/">Home</Link> |
+			<Link to="baseone">Basic One</Link> |
+			<Link to="shop">Shopping Cart</Link>
+		</nav>
+
+		<div>
+			<Route path="/" component="{ShoppingCart}"/>
+			<Route path="baseone" component="{BasicOne}" />
+			<Route path="shop" component="{ShoppingCart}" /> 
 		</div>
-	</div>
+	</Router>
 </main>
 
+
 <style>
-	main {
+	main{
+		padding-top:20px
+	}
+	nav{
+		background: #fff;
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		padding: 20px 0px 20px 0px;
+		border-radius: 10px;
+		max-width: 500px;
+		margin: auto;
+		box-shadow: 0px 0px 12px -5px #0000004d;
 	}
 </style>
