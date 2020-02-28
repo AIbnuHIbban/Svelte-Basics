@@ -14,7 +14,7 @@
 		</nav>
 
 		<div>
-			<Route path="/" component="{ShoppingCart}"/>
+			<Route path="/" component="{Home}"/>
 			<Route path="baseone" component="{BasicOne}" />
 			<Route path="shop" component="{ShoppingCart}" /> 
 		</div>
